@@ -55,7 +55,7 @@ export async function GET(request: Request, { params }: { params: Iparams }) {
     }
 
     if (announcements.length === 0 || announcements === null) {
-      return NextResponse.json({ msg: "No announcement found" });
+      return NextResponse.json({ msg: "No announcement found" },{status:404});
     }
     const data = announcements.map((item) => ({
       ...item, NEWS_DT: item.NEWS_DT.toISOString()

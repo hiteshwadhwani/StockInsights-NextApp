@@ -20,7 +20,7 @@ export async function GET() {
     });
 
     if (announcements.length === 0) {
-      return NextResponse.json({ msg: "No announcement found" });
+      return NextResponse.json({ msg: "No announcement found" },{status:404});
     }
     const data = announcements.map((item) => ({
       ...item,
