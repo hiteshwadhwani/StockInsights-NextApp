@@ -8,7 +8,7 @@ Indian public companies have to regularly update any corporate event that has a 
 
 ## Live
 
-https://vercel.com/hiteshwadhwani/stock-insights-next-app
+https://stock-insights-next-app.vercel.app/
 
 
 ## Tech Stack
