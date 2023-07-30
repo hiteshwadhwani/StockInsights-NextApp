@@ -52,7 +52,7 @@ To run this project, you will need to add the following environment variables to
 `DATABASE_URL` - you will get this url from mongodb atlas
 ## API Reference
 
-base url - https://vercel.com/hiteshwadhwani/stock-insights-next-app | http://localhost:3000
+base url - https://stock-insights-next-app.vercel.app | http://localhost:3000
 
 
 #### Get announcements
