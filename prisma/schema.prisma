@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model announcements {
+  id                 String @id @default(auto()) @map("_id") @db.ObjectId
+  NEWSID             String
+  SCRIP_CD           Int
+  XML_NAME           String
+  NEWSSUB            String
+  DT_TM              DateTime
+  NEWS_DT            DateTime
+  CRITICALNEWS       Int
+  ANNOUNCEMENT_TYPE  String
+  QUARTER_ID         Int?
+  FILESTATUS         String
+  ATTACHMENTNAME     String
+  MORE               String
+  HEADLINE           String
+  CATEGORYNAME       String
+  OLD                Int
+  RN                 Int
+  PDFFLAG            Int
+  NSURL              String
+  SLONGNAME          String
+  AGENDA_ID          Int
+  TotalPageCnt       Int
+  News_submission_dt DateTime
+  DissemDT           DateTime
+  TimeDiff           DateTime
+}
