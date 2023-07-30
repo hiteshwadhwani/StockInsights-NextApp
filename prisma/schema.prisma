@@ -16,7 +16,7 @@ model announcements {
   SCRIP_CD           Int
   XML_NAME           String
   NEWSSUB            String
-  DT_TM              DateTime
+  DT_TM              String
   NEWS_DT            DateTime
   CRITICALNEWS       Int
   ANNOUNCEMENT_TYPE  String
@@ -33,7 +33,7 @@ model announcements {
   SLONGNAME          String
   AGENDA_ID          Int
   TotalPageCnt       Int
-  News_submission_dt DateTime
-  DissemDT           DateTime
-  TimeDiff           DateTime
+  News_submission_dt String
+  DissemDT           String
+  TimeDiff           String
 }

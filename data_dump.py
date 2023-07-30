@@ -27,16 +27,17 @@ def dumpDataInMongoDb():
 
 def convertToDateTime(jsonData):
     for item in jsonData:
-        if 'DT_TM' in item:
-            item['DT_TM'] = datetime.fromisoformat(item['DT_TM'])
-        if 'NEWS_DT' in item:
+        if 'NEWS_DT' in item and is_valid_iso_string(item['NEWS_DT']):
             item['NEWS_DT'] = datetime.fromisoformat(item['NEWS_DT'])
-        if 'News_submission_dt' in item:
-            item['News_submission_dt'] = datetime.fromisoformat(item['News_submission_dt'])
-        if 'DissemDT' in item:
-            item['DissemDT'] = datetime.fromisoformat(item['DissemDT'])
-        if 'TimeDiff' in item:
-            item['TimeDiff'] = datetime.strptime(item['TimeDiff'], '%H:%M:%S')
-        return jsonData
+        else:
+            del item
+    return jsonData
+
+def is_valid_iso_string(s):
+    try:
+        datetime.fromisoformat(s)
+        return True
+    except ValueError:
+        return False
         
 dumpDataInMongoDb()
