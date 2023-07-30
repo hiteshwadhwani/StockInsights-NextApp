@@ -6,6 +6,10 @@ interface Iparams {
   id?: string;
 }
 
+// API to find announcements of a company(SCRIP_CD)
+// GET request
+// params - id (int url)
+// params - start (optional), end (optional)
 export async function GET(request: Request, { params }: { params: Iparams }) {
   try {
     const { id } = params;
@@ -27,6 +31,8 @@ export async function GET(request: Request, { params }: { params: Iparams }) {
     }
 
     let announcements = null
+
+    // if we have start and end date
     if (start && end) {
       console.log({start, end})
       announcements = await prismadb.announcements.findMany({
@@ -38,6 +44,8 @@ export async function GET(request: Request, { params }: { params: Iparams }) {
           },
         },
       });
+
+    // if we do not have start and end date
     } else {
       announcements = await prismadb.announcements.findMany({
         where: {
@@ -52,6 +60,7 @@ export async function GET(request: Request, { params }: { params: Iparams }) {
     const data = announcements.map((item) => ({
       ...item, NEWS_DT: item.NEWS_DT.toISOString()
     }))
+
 
     return NextResponse.json({ msg: "successful", data: data });
   } catch (error) {
