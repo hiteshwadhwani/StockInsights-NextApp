@@ -1,34 +1,145 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# StockInsights
 
-First, run the development server:
+Indian public companies have to regularly update any corporate event that has a high impact on their business, or the company’s shareholders to the stock exchanges such as BSE/NSE. For example, if a company gets a new contract or if the company gets new management, it should be announced to the stock exchanges. The BSE website displays every announcement sent by every company on its announcements page. Retail Investors can track the announcements of the stocks they are interested in through these announcements.Investor can hit your API endpoints &  get the announcement details of  details of that company. 
+
+
+
+
+## Live
+
+https://vercel.com/hiteshwadhwani/stock-insights-next-app
+
+
+## Tech Stack
+
+TypeScript, Next.js, Prisma (ORM), MongoDB (database), chai and mocha (Testing)
+
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  https://github.com/hiteshwadhwani/StockInsights-NextApp.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd StockInsights-NextApp
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install dependencies
 
-## Learn More
+```bash
+  npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`DATABASE_URL` - you will get this url from mongodb atlas
+## API Reference
+
+base url - https://vercel.com/hiteshwadhwani/stock-insights-next-app | http://localhost:3000
+
+
+#### Get announcements
+```http
+  GET /api/announcement/:id
+  GET /api/announcement/:id?start={start}&end={end}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `string` | **Required**. SCRIP_CD |
+| `start` | `string` | **optional**. start date |
+| `end` | `string` | **optional**. end date |
+
+#### Get announcements of multiple companies
+```http
+  POST /api/announcement
+  POST /api/announcement/?start={start}&end={end}
+```
+
+| body | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `ids` | `array` | array of SCRIP_CD |
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `start` | `string` |  start date |
+| `end` | `string` | end date |
+
+
+#### Get announcements between start date and end date
+```http
+  GET /api/announcement/?start={start}&end={end}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `start` | `string` |  start date |
+| `end` | `string` |  end date |
+
+
+#### Get critical announcements
+```http
+  GET /api/announcement/critical
+  GET /api/announcement/critical?start={start}&end={end}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `start` | `string` | **optional**. start date |
+| `end` | `string` | **optional**. end date |
+
+
+#### Get critical announcements of specified companies
+```http
+  POST /api/announcement/critical
+  POST /api/announcement/critical?start={start}&end={end}
+```
+
+| body | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `ids` | `array` | array of SCRIP_CD |
+
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `start` | `string` | **optional**. start date |
+| `end` | `string` | **optional**. end date |
+
+
+#### Get recent announcements (within 1-2 days)
+```http
+  GET /api/announcement/recent
+```
+
+
+
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run dev
+```
+
+```bash
+  npm run test
+```
+
